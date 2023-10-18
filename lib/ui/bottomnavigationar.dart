@@ -4,8 +4,6 @@ import 'package:condui_app/ui/profile.dart';
 import 'package:condui_app/ui/yourfeed.dart';
 import 'package:flutter/material.dart';
 
-
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,7 +19,7 @@ class BottomNavigation extends StatefulWidget {
     super.key,
     required this.index,
   });
-   static const id="Bottomnavigation_first_index_page";
+  static const id = "Bottomnavigation_first_index_page";
   var index;
 
   @override
@@ -126,7 +124,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               ListTile(
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
                     return DemoPage2();
                   }));
                 },
@@ -341,8 +340,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           ),
                         ),
                       ),
-                     
-                    
                     ],
                   ),
                 )

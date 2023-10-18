@@ -1,22 +1,22 @@
 import 'package:condui_app/Bloc/allarticlebloc/bloc/all_article_bloc.dart';
 import 'package:condui_app/model/conduitmodel.dart';
+import 'package:condui_app/ui/search_page.dart';
 import 'package:condui_app/widget/allarticlewidget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../intl/appcolor.dart';
 
 class AllArticlePage extends StatefulWidget {
-  const AllArticlePage({super.key});
+  const AllArticlePage({Key? key});
 
   @override
   State<AllArticlePage> createState() => _AllArticlePageState();
 }
 
 class _AllArticlePageState extends State<AllArticlePage> {
+  String searchTag = ''; // Store the search tag
+
   @override
   void initState() {
     context.read<AllArticleBloc>()..add(AllArticleInitialEvent());
@@ -91,34 +91,77 @@ class _AllArticlePageState extends State<AllArticlePage> {
               );
             }
             if (state is AllArticleSuccessState) {
-              //final load = state as ConduitLoadedState;
-              List<AllArticlesModel> articlelist = state.allarticlemodel;
+              List<AllArticlesModel> allArticles = state.allarticlemodel;
 
-              if (state.allarticlemodel.isEmpty) {
-                return Center(
-                  child: Column(children: [
-                    Text("No data Found"),
-                  ]),
-                );
-              } else {
-                return RefreshIndicator(
-                  onRefresh: refreshdata,
-                  child: ListView.separated(
-                      primary: false,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return AllArticlewidget(
-                          article: articlelist[index],
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return Container(
-                          width: 14,
-                        );
-                      },
-                      itemCount: articlelist.length),
-                );
-              }
+              // Apply the search filter
+              List<AllArticlesModel> filteredArticles =
+                  allArticles.where((article) {
+                if (searchTag.isEmpty) {
+                  return true; // No filter, return all articles
+                }
+                // Check if the article has a tag that contains the search tag
+                return article.tagList?.any((tag) =>
+                        tag.toLowerCase().contains(searchTag.toLowerCase())) ==
+                    true;
+              }).toList();
+
+              return RefreshIndicator(
+                onRefresh: refreshdata,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 18,
+                      ),
+                      // Add a search input field
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: TextField(
+                          style: TextStyle(fontSize: 13.5),
+                          onChanged: (value) {
+                            setState(() {
+                              searchTag = value
+                                  .toLowerCase(); // Convert the input to lowercase
+                            });
+                          },
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(12),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            hintText: "Search by tag...",
+                            hintStyle: TextStyle(fontSize: 13.5),
+                          ),
+                        ),
+                      ),
+                      if (filteredArticles.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Text("No data found"),
+                        ),
+
+                      ListView.separated(
+                        primary: false,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return AllArticlewidget(
+                            article: filteredArticles[index],
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return Container(
+                            width: 14,
+                          );
+                        },
+                        itemCount: filteredArticles.length,
+                      ),
+                    ],
+                  ),
+                ),
+              );
             }
 
             return Container();

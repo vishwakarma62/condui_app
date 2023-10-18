@@ -86,211 +86,213 @@ class _DemoPage2State extends State<DemoPage2> {
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 25,
-                ),
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColor.conduitgreen),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 25,
                   ),
-                  child: image != null
-                      ? ClipOval(
-                          child: Image.network(
-                            image!,
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColor.conduitgreen),
+                    ),
+                    child: image != null
+                        ? ClipOval(
+                            child: Image.network(
+                              image!,
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : Icon(
+                            Icons.person,
+                            size: 40, // Adjust the size as needed
+                            color: Colors.grey, // Adjust the color as needed
                           ),
-                        )
-                      : Icon(
-                          Icons.person,
-                          size: 40, // Adjust the size as needed
-                          color: Colors.grey, // Adjust the color as needed
-                        ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextFormField(
-                    style: TextStyle(fontSize: 12),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: imageCtr,
-                    cursorColor: Colors.blue,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.image,
-                          color: AppColor.conduitgreen,
-                        ),
-                        filled: true,
-                        fillColor: AppColor.conduittextfieldcolor,
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        contentPadding: EdgeInsets.all(12),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.2),
-                        ),
-                        hintText: "Profile photo url",
-                        hintStyle: TextStyle(fontSize: 12)),
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextFormField(
-                    style: TextStyle(fontSize: 12),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: usernameCtr,
-                    cursorColor: Colors.blue,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: AppColor.conduitgreen,
-                        ),
-                        filled: true,
-                        fillColor: AppColor.conduittextfieldcolor,
-                        focusedBorder: OutlineInputBorder(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      style: TextStyle(fontSize: 12),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: imageCtr,
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.image,
+                            color: AppColor.conduitgreen,
+                          ),
+                          filled: true,
+                          fillColor: AppColor.conduittextfieldcolor,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          contentPadding: EdgeInsets.all(12),
+                          enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        contentPadding: EdgeInsets.all(12),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.2),
-                        ),
-                        hintText: "Username",
-                        hintStyle: TextStyle(fontSize: 12)),
+                                BorderSide(color: Colors.black, width: 1.2),
+                          ),
+                          hintText: "Profile photo url",
+                          hintStyle: TextStyle(fontSize: 12)),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextFormField(
-                    maxLines: 3,
-                    style: TextStyle(fontSize: 12),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: bioCtr,
-                    cursorColor: Colors.blue,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: AppColor.conduittextfieldcolor,
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        contentPadding: EdgeInsets.all(12),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.2),
-                        ),
-                        hintText: "Bio",
-                        hintStyle: TextStyle(fontSize: 12)),
+                  SizedBox(
+                    height: 12,
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextFormField(
-                    style: TextStyle(fontSize: 12),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: emailCtr,
-                    cursorColor: Colors.blue,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: AppColor.conduitgreen,
-                        ),
-                        filled: true,
-                        fillColor: AppColor.conduittextfieldcolor,
-                        focusedBorder: OutlineInputBorder(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      style: TextStyle(fontSize: 12),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: usernameCtr,
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: AppColor.conduitgreen,
+                          ),
+                          filled: true,
+                          fillColor: AppColor.conduittextfieldcolor,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          contentPadding: EdgeInsets.all(12),
+                          enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 1.2)),
-                        contentPadding: EdgeInsets.all(12),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.2),
-                        ),
-                        hintText: "Email",
-                        hintStyle: TextStyle(fontSize: 12)),
+                                BorderSide(color: Colors.black, width: 1.2),
+                          ),
+                          hintText: "Username",
+                          hintStyle: TextStyle(fontSize: 12)),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 44,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      maxLines: 3,
+                      style: TextStyle(fontSize: 12),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: bioCtr,
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: AppColor.conduittextfieldcolor,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          contentPadding: EdgeInsets.all(12),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 1.2),
+                          ),
+                          hintText: "Bio",
+                          hintStyle: TextStyle(fontSize: 12)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      style: TextStyle(fontSize: 12),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: emailCtr,
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: AppColor.conduitgreen,
+                          ),
+                          filled: true,
+                          fillColor: AppColor.conduittextfieldcolor,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.2)),
+                          contentPadding: EdgeInsets.all(12),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 1.2),
+                          ),
+                          hintText: "Email",
+                          hintStyle: TextStyle(fontSize: 12)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 44,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: AppColor.conduitgreen,
                         ),
-                        backgroundColor: AppColor.conduitgreen,
-                      ),
-                      onPressed: () {
-                        FocusScopeNode currentFocus = FocusScope.of(context);
-                        if (!currentFocus.hasPrimaryFocus) {
-                          currentFocus.unfocus();
-                        }
-                      },
-                      child: Text(
-                        "Save",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      )),
-                )
-              ],
+                        onPressed: () {
+                          FocusScopeNode currentFocus = FocusScope.of(context);
+                          if (!currentFocus.hasPrimaryFocus) {
+                            currentFocus.unfocus();
+                          }
+                        },
+                        child: Text(
+                          "Save",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        )),
+                  )
+                ],
+              ),
             ),
           );
         },

@@ -56,6 +56,7 @@ class _ArticalBySlugPageState extends State<ArticalBySlugPage> {
       onRefresh: () => refresh(),
       child: Scaffold(
         appBar: AppBar(
+          
           backgroundColor: Colors.green,
           title: Text(
             "Details",
@@ -251,7 +252,7 @@ class _ArticalBySlugPageState extends State<ArticalBySlugPage> {
                             if (widget.data.author!.username == username)
                               IconButton(
                                 onPressed: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {

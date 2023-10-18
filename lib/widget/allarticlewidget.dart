@@ -68,6 +68,7 @@ class _AllArticlewidgetState extends State<AllArticlewidget> {
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Card(
+          shadowColor: Colors.white,
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(10.0),

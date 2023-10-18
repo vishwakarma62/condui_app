@@ -81,7 +81,7 @@ class _EditPageState extends State<EditPage> {
                 }
                 if (state is EditSuccessState) {
                   testmassage.dismiss();
-                  print(state.mssg);
+                 
                   print(state.editedartical.author!.username);
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {

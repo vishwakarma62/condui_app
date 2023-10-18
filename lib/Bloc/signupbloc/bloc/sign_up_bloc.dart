@@ -26,20 +26,20 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     emit(SignUpLoading());
     try {
       http.Response data = await signUpRepository.signup(event.signup);
-      print(data.statusCode);
+      //print(data.statusCode);
       if (data.statusCode == 200 || data.statusCode == 201) {
         print("signupseccess");
         emit(SignUpLoaded(masg: "SignUp Successfull"));
       } else {
         String mssg = '';
         dynamic errordata = jsonDecode(data.body);
-        print(errordata);
+        //print(errordata);
         if (errordata['errors'] != null) {
           dynamic errors = errordata['errors'];
           dynamic errorfirstvalue = errors.keys.first;
           dynamic errorbody = errors[errorfirstvalue][0];
 
-          print(mssg);
+          //print(mssg);
           dynamic usernamevalue = errors.keys.last;
           dynamic usernamebody = errors[usernamevalue][0];
 

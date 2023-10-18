@@ -24,7 +24,7 @@ class ArticleRepository extends Articlerepo {
   Future<List<AllArticlesModel>> allarticlefetchdata() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dynamic jsontoken = prefs.getString('token');
-    print(jsontoken);
+    //print(jsontoken);
     http.Response response =
         await http.get(Uri.parse(ApiConstant.allarticle), headers: {
       'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ class ArticleRepository extends Articlerepo {
 
     if (response.statusCode == 200) {
       dynamic jsonResponse = json.decode(response.body);
-      print(jsonResponse);
+     // print(jsonResponse);
       // Parse the JSON response into a map
 
       dynamic data = jsonResponse['article'];
@@ -120,7 +120,7 @@ class ArticleRepository extends Articlerepo {
 
     String url = ApiConstant.favfirsturl + _slug;
 
-    print(_slug);
+    //print(_slug);
 
     http.Response response = await http.delete(
       Uri.parse(url),
@@ -186,7 +186,7 @@ class ArticleRepository extends Articlerepo {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dynamic jsontoken = prefs.getString('token');
     dynamic jsonusername = prefs.getString('username');
-    print(jsontoken);
+    //print(jsontoken);
     http.Response response = await http
         .get(Uri.parse(ApiConstant.userarticleurl + jsonusername), headers: {
       'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ class ArticleRepository extends Articlerepo {
       final Map<String, dynamic> jsonResponse = json.decode(response.body);
 
       final List<dynamic> data = jsonResponse['articles'];
-      print(data);
+      //print(data);
 
       return data.map((e) => AllArticlesModel.fromJson(e)).toList();
     } else {
@@ -214,7 +214,7 @@ class ArticleRepository extends Articlerepo {
 
     String url = ApiConstant.addarticleurl;
     Map<String, dynamic> body = _articlemodel.toJson();
-    print(body);
+    //print(body);
 
     http.Response response = await http.post(
       Uri.parse(url),
@@ -225,8 +225,8 @@ class ArticleRepository extends Articlerepo {
       body: jsonEncode({'article': body}),
     );
     dynamic setdata = jsonEncode({'article': body});
-    print(setdata);
-    print(response.body);
+    //print(setdata);
+    //print(response.body);
     if (response.statusCode == 201) {
       return true;
     } else {
@@ -239,7 +239,7 @@ class ArticleRepository extends Articlerepo {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dynamic jsontoken = prefs.getString('token');
     dynamic jsonusername = prefs.getString('username');
-    print(jsonusername);
+    //(jsonusername);
 
     http.Response response = await http
         .get(Uri.parse(ApiConstant.favouriteUrl + jsonusername), headers: {
@@ -272,7 +272,7 @@ class ArticleRepository extends Articlerepo {
     // http.Response response = await UserClient.instance.doGet(url);
     dynamic jsonData = json.decode(response.body);
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       // ProfileModel profile = ProfileModel.fromJson(jsonData);
       return ProfileModel.fromJson(jsonData);
     } else {
@@ -293,7 +293,7 @@ class ArticleRepository extends Articlerepo {
     // http.Response response = await UserClient.instance.doGet(url);
     dynamic jsonData = json.decode(response.body);
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       // ProfileModel profile = ProfileModel.fromJson(jsonData);
       return ProfileModel.fromJson(jsonData);
     } else {

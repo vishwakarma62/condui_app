@@ -31,7 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (errordata['errors'] != null) {
           dynamic errors = errordata['errors'];
           String firstvalue = errors.keys.first;
-          print(firstvalue);
+         // print(firstvalue);
           String lastvalue = errors[firstvalue][0];
            mssg = "$firstvalue is $lastvalue";
         }
